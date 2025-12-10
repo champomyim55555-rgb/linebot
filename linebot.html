@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบฟอร์มข้อมูลสุขภาพ</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #e0f2ff;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 90%;
+        max-width: 450px;
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .logo {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .logo img {
+        max-width: 120px;
+        border-radius: 10px;
+    }
+    label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 10px;
+        display: block;
+    }
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <!-- ใส่โลโก้ -->
+        <img src="S__4333572.png" alt="logo">
+    </div>
+
+    <label>ชื่อ - นามสกุล</label>
+    <input type="text" id="fullname">
+
+    <label>เพศ</label>
+    <select id="gender">
+        <option value="" selected disabled>เลือกเพศ</option>
+        <option>ชาย</option>
+        <option>หญิง</option>
+        <option>อื่นๆ</option>
+    </select>
+
+    <label>อายุ (ปี)</label>
+    <input type="number" id="age">
+
+    <label>น้ำหนัก (kg)</label>
+    <input type="number" id="weight" oninput="calculateBMI()">
+
+    <label>ส่วนสูง (cm)</label>
+    <input type="number" id="height" oninput="calculateBMI()">
+
+    <label>ค่า BMI</label>
+    <input type="text" id="bmi" readonly>
+
+    <label>โรคประจำตัว</label>
+    <textarea id="disease" rows="2"></textarea>
+	
+    <button onclick="saveData()" style="
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        font-size: 16px;
+        background: #4fa9ff;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;">
+        บันทึกข้อมูล
+    </button>
+
+</div>
+
+<script>
+function calculateBMI() {
+    let weight = parseFloat(document.getElementById("weight").value);
+    let height = parseFloat(document.getElementById("height").value);
+
+    if(weight > 0 && height > 0) {
+        let bmi = weight / ((height/100) ** 2);
+        document.getElementById("bmi").value = bmi.toFixed(2);
+    }
+}
+</script>
+
+</body>
+</html>
